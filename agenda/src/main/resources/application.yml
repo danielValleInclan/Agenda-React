@@ -4,8 +4,6 @@ server:
 spring:
   application:
     name: agendareact-service
-  main:
-    allow-bean-definition-overriding: true
   data:
     mongodb:
       host: localhost
