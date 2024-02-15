@@ -11,7 +11,7 @@ public interface AgendaService {
     Optional<PersonVO> getPersonById(String id);
     PersonVO save(PersonVO personVO);
     PersonVO update(PersonVO personVO, String id);
-    List<PersonVO> findByNameContaining(String name);
+    List<PersonVO> findByFirstNameContaining(String name);
     ResponseEntity deletePerson(String id);
     ResponseEntity deleteAllPersons();
 }

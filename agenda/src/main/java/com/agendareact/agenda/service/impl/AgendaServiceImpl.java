@@ -35,8 +35,8 @@ public class AgendaServiceImpl implements AgendaService {
     }
 
     @Override
-    public List<PersonVO> findByNameContaining(String name) {
-        return agendaRepository.findByNameContaining(name);
+    public List<PersonVO> findByFirstNameContaining(String name) {
+        return agendaRepository.findByFirstNameContaining(name);
     }
 
     @Override
