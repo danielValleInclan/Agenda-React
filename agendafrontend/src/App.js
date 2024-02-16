@@ -3,6 +3,7 @@ import { Link as ReactRouterLink, Route, Routes } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import AgendaList from './component/agenda-list.component';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 
 class App extends Component{
