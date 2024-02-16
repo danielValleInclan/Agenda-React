@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import AgendaList from './component/agenda-list.component';
+import AddPerson from "./component/add-person.component"; // Importa el componente AddPerson
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 
@@ -31,7 +32,7 @@ class App extends Component{
             <Switch>
             {/*El en switch se renderizarán todas los compoentes cuta URL coicidan con la activa*/}
               <Route exact path={["/", "/agenda"]} component={AgendaList} />
-            {/*  <Route exact path="/add" component={AddTutorial} /> */}
+            <Route exact path="/add" component={AddPerson} />
             {/*  <Route path="/tutorials/:id" component={Tutorial} /> */}
             </Switch>
           </div>
