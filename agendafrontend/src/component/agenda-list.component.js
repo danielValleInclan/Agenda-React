@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import TutorialDataService from "../services/tutorial.service";
+import AgendaDataService from "../services/agenda.service";
 import { Link } from "react-router-dom";
 
 export default class AgendaList extends Component {
