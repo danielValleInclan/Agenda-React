@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AgendaDataService from "../services/agenda.service";
 import { Link, BrowserRouter as Router } from "react-router-dom"; 
+import EditPerson from "./edit-person.component";
 
 export default class AgendaList extends Component {
     constructor(props) {
@@ -205,10 +206,9 @@ export default class AgendaList extends Component {
                     </div>
       
                     <Link
-                      //Como hemos incluido en el switch esta ruta, /tutorials/+id se renderizará el componente
-                      // tutorials cuando se pulse el enlace.
-                      to={"/agenda/" + currentPerson.id}
+                      to={"/edit-person/" + currentPerson.id}
                       className="badge badge-warning"
+                      style={{ color: "black", backgroundColor: "yellow", padding: "5px", borderRadius: "5px" }} // Estilos para hacer visible el enlace
                     >
                       Edit
                     </Link>

@@ -4,6 +4,7 @@ import "./App.css";
 import AgendaList from './component/agenda-list.component';
 import AddPerson from "./component/add-person.component"; // Importa el componente AddPerson
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import EditPerson from "./component/edit-person.component";
 
 
 class App extends Component{
@@ -33,6 +34,7 @@ class App extends Component{
             {/*El en switch se renderizarán todas los compoentes cuta URL coicidan con la activa*/}
               <Route exact path={["/", "/agenda"]} component={AgendaList} />
             <Route exact path="/add" component={AddPerson} />
+            <Route exact path="/edit-person/:id" component={EditPerson} />
             {/*  <Route path="/tutorials/:id" component={Tutorial} /> */}
             </Switch>
           </div>
