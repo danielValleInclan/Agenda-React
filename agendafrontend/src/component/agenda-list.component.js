@@ -11,6 +11,7 @@ export default class AgendaList extends Component {
         this.setActivePerson = this.setActivePerson.bind(this);
         this.removeAllPersons = this.removeAllPersons.bind(this);
         this.searchName = this.searchName.bind(this);
+        this.removePerson = this.removePerson.bind(this);
 
         this.state = {
             persons: [],
@@ -69,6 +70,24 @@ export default class AgendaList extends Component {
           .catch(e => {
             console.log(e);
           });
+    }
+
+    removePerson() {
+      const {currentIndex, persons} = this.state;
+
+      if (currentIndex !== -1) {
+        const personId = persons[currentIndex].id;
+
+        
+        AgendaDataService.delete(personId)
+        .then(response => {
+          console.log(response.data);
+          this.refreshList();
+        })
+        .catch(e => {
+          console.log(e);
+        });
+      }
     }
 
     searchName() {
@@ -138,6 +157,13 @@ export default class AgendaList extends Component {
                   onClick={this.removeAllPersons}
                 >
                   Remove All
+                </button>
+
+                <button
+                className="m-3 btn btn-sm btn-danger"
+                onClick={() => this.removePerson()}
+                >
+                  Remove Selected
                 </button>
               </div>
               <div className="col-md-6">
