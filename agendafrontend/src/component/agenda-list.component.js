@@ -107,6 +107,9 @@ export default class AgendaList extends Component {
 
     render() {
         const { searchName, persons, currentPerson, currentIndex } = this.state;
+        const progressBarStyle = {
+          width: `${(persons.length / 50) * 100}%`
+        }
         //ponemos los distintos elementos del estado en variables para simplificar su acceso dentro del método
         return (
           <Router>
@@ -167,6 +170,17 @@ export default class AgendaList extends Component {
                 >
                   Remove Selected
                 </button>
+                <div className="progress mt-3">
+                    <div
+                      className="progress-bar"
+                      role="progressbar"
+                      style={progressBarStyle}
+                      aria-valuenow={(persons.length / 50) * 100}
+                      aria-valuemin="0"
+                      aria-valuemax="100">
+                      {persons.length}/50
+                    </div>
+                </div>
               </div>
               <div className="col-md-6">
                 {/*Renderizado condicional. Si current tutorial el null se dibuja lo de abajo. Si no,*/}
