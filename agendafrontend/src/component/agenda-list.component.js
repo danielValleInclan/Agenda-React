@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AgendaDataService from "../services/agenda.service";
-import { Link, BrowserRouter as Router } from "react-router-dom"; 
+import { Link, BrowserRouter as Router, Route } from "react-router-dom"; 
+
 
 export default class AgendaList extends Component {
     constructor(props) {
@@ -55,10 +56,11 @@ export default class AgendaList extends Component {
     }
 
     setActivePerson(person, index) {
-        this.setState({
-            currentPerson: person,
-            currentIndex: index
-        });
+      this.props.setCurrentPerson(person); // Llama al método para actualizar el estado en App
+      this.setState({
+        currentPerson: person,
+        currentIndex: index
+      });
     }
     
     removeAllPersons() {
@@ -203,14 +205,6 @@ export default class AgendaList extends Component {
                       </label>{" "}
                       {currentPerson.birthday}
                     </div>
-      
-                    <Link
-                      to={"/edit-person/" + currentPerson.id}
-                      className="badge badge-warning"
-                      style={{ color: "black", backgroundColor: "yellow", padding: "5px", borderRadius: "5px" }} // Estilos para hacer visible el enlace
-                    >
-                      Edit
-                    </Link>
                   </div>
                 ) : (
                   <div>

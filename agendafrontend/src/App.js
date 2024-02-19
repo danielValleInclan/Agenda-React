@@ -8,6 +8,20 @@ import EditPerson from "./component/edit-person.component";
 
 
 class App extends Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentPerson: null
+    };
+    this.setCurrentPerson = this.setCurrentPerson.bind(this);
+  }
+
+  setCurrentPerson(person) {
+    this.setState({
+      currentPerson: person
+    });
+  }
+
   render() {
     return (
       <Router>
@@ -27,14 +41,21 @@ class App extends Component{
                   Add
                 </Link>
               </li>
+              <li className="nav-item">
+              <Link
+                to={"/edit-person/" + (this.state.currentPerson ? this.state.currentPerson.id : '')}
+                className="nav-link">
+                Edit {this.state.currentPerson && this.state.currentPerson.firstName + " " + this.state.currentPerson.lastName}
+              </Link>
+              </li>
             </div>
           </nav>
           <div className="container mt-3">
             <Switch>
             {/*El en switch se renderizarán todas los compoentes cuta URL coicidan con la activa*/}
-              <Route exact path={["/", "/agenda"]} component={AgendaList} />
-            <Route exact path="/add" component={AddPerson} />
-            <Route exact path="/edit-person/:id" component={EditPerson} />
+              <Route exact path={["/", "/agenda"]} render={() => <AgendaList currentPerson={this.state.currentPerson} setCurrentPerson={this.setCurrentPerson} />} />
+              <Route exact path="/add" component={AddPerson} />
+              <Route exact path="/edit-person/:id" component={EditPerson} />
             {/*  <Route path="/tutorials/:id" component={Tutorial} /> */}
             </Switch>
           </div>
@@ -45,28 +66,3 @@ class App extends Component{
 }
 
 export default App;
-
-/*
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default App;
-*/
