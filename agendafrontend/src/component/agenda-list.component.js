@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import AgendaDataService from "../services/agenda.service";
 import { Link, BrowserRouter as Router } from "react-router-dom"; 
-import EditPerson from "./edit-person.component";
 
 export default class AgendaList extends Component {
     constructor(props) {
