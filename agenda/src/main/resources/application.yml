@@ -8,5 +8,5 @@ spring:
     allow-bean-definition-overriding: true
   data:
     mongodb:
-      host: localhost
+      host: mongo_db
       port: 27017
