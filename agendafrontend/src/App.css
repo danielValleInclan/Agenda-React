@@ -7,6 +7,13 @@
   pointer-events: none;
 }
 
+.btn-custom {
+  background-color: yellow; /* Fondo amarillo */
+  color: black; /* Texto negro */
+  font-size: 0.8em; /* Tamaño de fuente más pequeño */
+}
+
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

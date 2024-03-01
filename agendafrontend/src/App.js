@@ -41,13 +41,6 @@ class App extends Component{
                   Add
                 </Link>
               </li>
-              <li className="nav-item">
-              <Link
-                to={"/edit-person/" + (this.state.currentPerson ? this.state.currentPerson.id : '')}
-                className="nav-link">
-                Edit {this.state.currentPerson && this.state.currentPerson.firstName + " " + this.state.currentPerson.lastName}
-              </Link>
-              </li>
             </div>
           </nav>
           <div className="container mt-3">
