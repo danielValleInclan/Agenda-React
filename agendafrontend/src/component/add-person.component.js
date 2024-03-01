@@ -11,7 +11,9 @@ export default class AddPerson extends Component {
             street: "",
             postalCode: "",
             city: "",
-            birthday: ""
+            birthday: "",
+            showSuccessMessage: false,
+            showErrorMessage: false
         };
     }
 
@@ -35,18 +37,40 @@ export default class AddPerson extends Component {
         AgendaDataService.create(data)
           .then(response => {
             console.log(response.data);
-            // Aquí puedes manejar la respuesta del servidor, por ejemplo, redireccionar a otra página o mostrar un mensaje de éxito
+            this.setState({showSuccessMessage: true});
+            setTimeout(() => {
+              this.setState({showSuccessMessage: false})
+            }, 3000)
+            this.resetForm();
           })
           .catch(error => {
             console.error("Error creating person:", error);
-            // Aquí puedes manejar el error, por ejemplo, mostrar un mensaje de error al usuario
+            this.setState({showErrorMessage: true});
+            setTimeout(() =>{
+              this.setState({showErrorMessage: false})
+            }, 3000)
+            
           });
       };
+
+      resetForm = () => {
+        this.setState({
+            firstName: "",
+            lastName: "",
+            street: "",
+            postalCode: "",
+            city: "",
+            birthday: ""
+        });
+      };
+
     render() {
-        const { firstName, lastName, street, postalCode, city, birthday } = this.state;
+        const { firstName, lastName, street, postalCode, city, birthday, showSuccessMessage, showErrorMessage } = this.state;
         return (
           <div>
             <h2>Add Person</h2>
+            {showSuccessMessage && <div className="alert alert-success">Person added successfully!</div>} {/* Mostrar el mensaje de éxito si showSuccessMessage es true */}
+            {showErrorMessage && <div className="alert alert-error">Error adding person!!</div>}
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
                 <label htmlFor="firstName">First Name</label>
