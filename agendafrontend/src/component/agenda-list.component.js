@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import AgendaDataService from "../services/agenda.service";
-import { BrowserRouter as Router, Link} from "react-router-dom"; 
+import { BrowserRouter as  Link} from "react-router-dom"; 
 
 
 export default class AgendaList extends Component {
@@ -18,12 +18,28 @@ export default class AgendaList extends Component {
             persons: [],
             currentPerson: null,
             currentIndex: -1,
-            searchName: ""
+            searchName: "",
+            totalPersons: 0
+
         };
     }
 
     componentDidMount() {
         this.retrievePersons();
+        this.countTotalPersons();
+    }
+
+    countTotalPersons() {
+      AgendaDataService.getAll()
+        .then(response => {
+          this.setState({
+              persons: response.data,
+              totalPersons: response.data.length  // Calcula el total de personas
+          });
+        })
+        .catch(e => {
+            console.log(e);
+        });
     }
 
     onChangeSearchName(e) {
@@ -106,9 +122,9 @@ export default class AgendaList extends Component {
     }
 
     render() {
-        const { searchName, persons, currentPerson, currentIndex } = this.state;
+        const { searchName, persons, currentPerson, currentIndex, totalPersons } = this.state;
         const progressBarStyle = {
-          width: `${(persons.length / 50) * 100}%`
+          width: `${(totalPersons / 50) * 100}%`
         }
         //ponemos los distintos elementos del estado en variables para simplificar su acceso dentro del método
         return (
@@ -174,12 +190,13 @@ export default class AgendaList extends Component {
                     className="progress-bar"
                     role="progressbar"
                     style={progressBarStyle}
-                    aria-valuenow={(persons.length / 50) * 100}
+                    aria-valuenow={(totalPersons / 50) * 100}
                     aria-valuemin="0"
                     aria-valuemax="100">
-                    {persons.length}/50
+                    {totalPersons}/50
                   </div>
               </div>
+              <p>Total de personas</p>
             </div>
             <div className="col-md-6">
               {/*Renderizado condicional. Si current tutorial el null se dibuja lo de abajo. Si no,*/}
