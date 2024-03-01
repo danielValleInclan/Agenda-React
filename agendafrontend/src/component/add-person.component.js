@@ -138,9 +138,14 @@ export default class AddPerson extends Component {
                 />
               </div>
               <br/>
-              <button type="submit" className="btn btn-primary">
-                Guardar
-              </button>
+              <div className="d-flex justify-content-between">
+                <button type="submit" className="btn btn-primary">
+                  Guardar
+                </button>
+                <Link to={"/agenda"} className="btn btn-primary ">
+                  Cancelar
+                </Link>
+              </div>  
             </form>
           </div>
         );
