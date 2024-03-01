@@ -178,13 +178,6 @@ export default class AgendaList extends Component {
               >
                 Eliminar todas
               </button>
-
-              <button
-              className="m-3 btn btn-sm btn-danger"
-              onClick={() => this.removePerson()}
-              >
-                Eliminar persona seleccinada
-              </button>
               <div className="progress mt-3">
                   <div
                     className="progress-bar"
@@ -235,6 +228,16 @@ export default class AgendaList extends Component {
                     </label>{" "}
                     {currentPerson.birthday}
                   </div>
+                    {currentPerson && (
+                      <button
+                          className="btn btn-sm btn-custom-remove"
+                          onClick={this.removePerson}
+                      >
+                          Eliminar 
+                      </button>
+                    )}
+                    &nbsp;
+                    &nbsp;
                     {currentPerson && (
                       <Link
                       to={"/edit-person/" + (currentPerson ? currentPerson.id : '')}

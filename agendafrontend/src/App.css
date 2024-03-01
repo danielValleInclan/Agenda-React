@@ -8,10 +8,27 @@
 }
 
 .btn-custom {
-  background-color: yellow; /* Fondo amarillo */
-  color: black; /* Texto negro */
-  font-size: 0.8em; /* Tamaño de fuente más pequeño */
+  background-color: orange;
+  color: white;
+  font-size: 0.8em;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+.btn-custom:hover {
+  background-color: darkorange; /* Color ligeramente más oscuro al pasar el cursor */
+}
+
+.btn-custom-remove {
+  background-color: red;
+  color: white;
+  font-size: 0.8em;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-custom-remove:hover {
+  background-color: darkred; /* Color ligeramente más oscuro al pasar el cursor */
+}
+
 
 
 @media (prefers-reduced-motion: no-preference) {
