@@ -1,5 +1,5 @@
 server:
-  port: 8098
+  port: 8099
 
 spring:
   application:
@@ -8,5 +8,5 @@ spring:
     allow-bean-definition-overriding: true
   data:
     mongodb:
-      host: mongo_db
+      host: 182.28.0.11
       port: 27017

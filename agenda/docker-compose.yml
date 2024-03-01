@@ -1,4 +1,4 @@
-version: '1'
+version: '2'
 networks:
   mired2:
     ipam:
@@ -23,8 +23,8 @@ services:
       mired2:
         ipv4_address: 182.28.0.12
     expose:
-      - 8080
+      - 88
     ports:
-      - "8080:8098"
+      - "88:8099"
     depends_on:
       - db
