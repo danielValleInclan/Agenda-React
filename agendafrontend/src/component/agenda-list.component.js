@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import AgendaDataService from "../services/agenda.service";
-import { BrowserRouter as  Link} from "react-router-dom"; 
+import { BrowserRouter as Router, Link} from "react-router-dom"; 
 
 
 export default class AgendaList extends Component {
