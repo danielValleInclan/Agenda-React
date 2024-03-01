@@ -11,7 +11,8 @@ export default class EditPerson extends Component {
         street: "",
         postalCode: "",
         city: "",
-        birthday: ""
+        birthday: "",
+        currentDate: new Date().toISOString().split('T')[0]
     };
   }
 
@@ -42,7 +43,21 @@ export default class EditPerson extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        const { id, firstName, lastName, street, postalCode, city, birthday } = this.state;
+        const { id, firstName, lastName, street, postalCode, city, birthday, currentDate } = this.state;
+
+        if (isNaN(postalCode)) {
+          alert("The postal code must be a number")
+          return;
+        } else if (postalCode.length <= 0 || postalCode.length > 5) {
+          alert("Número de cifras incorrectas en el código postal")
+          return;
+        }
+
+        if (birthday > currentDate){
+          alert("Fecha inválida")
+          return;
+        }
+
         const data = {
             id: id,
             firstName: firstName,

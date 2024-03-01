@@ -13,7 +13,8 @@ export default class AddPerson extends Component {
             city: "",
             birthday: "",
             showSuccessMessage: false,
-            showErrorMessage: false
+            showErrorMessage: false,
+            currentDate: new Date().toISOString().split('T')[0]
         };
     }
 
@@ -24,7 +25,21 @@ export default class AddPerson extends Component {
 
       handleSubmit = (event) => {
         event.preventDefault();
-        const { firstName, lastName, street, postalCode, city, birthday } = this.state;
+        const { firstName, lastName, street, postalCode, city, birthday, currentDate } = this.state;
+
+        if (isNaN(postalCode)) {
+          alert("The postal code must be a number")
+          return;
+        } else if (postalCode.length <= 0 || postalCode.length > 5) {
+          alert("Número de cifras incorrectas en el código postal")
+          return;
+        }
+
+        if (birthday > currentDate){
+          alert("Fecha inválida")
+          return;
+        }
+
         const data = {
           firstName: firstName,
           lastName: lastName,
