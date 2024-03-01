@@ -96,7 +96,7 @@ export default class AgendaList extends Component {
         AgendaDataService.findByName(this.state.searchName)
           .then(response => {
             this.setState({
-              person: response.data
+              persons: response.data
             });
             console.log(response.data);
           })
