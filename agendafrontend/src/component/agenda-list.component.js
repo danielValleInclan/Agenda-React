@@ -171,25 +171,6 @@ export default class AgendaList extends Component {
                     </li>
                   ))}
               </ul>
-    
-              <button
-                className="m-3 btn btn-sm btn-danger"
-                onClick={this.removeAllPersons}
-              >
-                Eliminar todas
-              </button>
-              <div className="progress mt-3">
-                  <div
-                    className="progress-bar"
-                    role="progressbar"
-                    style={progressBarStyle}
-                    aria-valuenow={(totalPersons / 50) * 100}
-                    aria-valuemin="0"
-                    aria-valuemax="100">
-                    {totalPersons}/50
-                  </div>
-              </div>
-              <p>Total de personas</p>
             </div>
             <div className="col-md-6">
               {/*Renderizado condicional. Si current tutorial el null se dibuja lo de abajo. Si no,*/}
@@ -253,6 +234,26 @@ export default class AgendaList extends Component {
                   <p>Porfavor selecciona una persona...</p>
                 </div>
               )}
+            </div>
+            <div className="col-md-6">
+              <button
+                  className="m-3 btn btn-sm btn-danger"
+                  onClick={this.removeAllPersons}
+                >
+                  Eliminar todas
+                </button>
+                <div className="progress mt-3">
+                    <div
+                      className="progress-bar"
+                      role="progressbar"
+                      style={progressBarStyle}
+                      aria-valuenow={(totalPersons / 50) * 100}
+                      aria-valuemin="0"
+                      aria-valuemax="100">
+                      {totalPersons}/50
+                    </div>
+                </div>
+                <p>Total de personas</p>
             </div>
           </div>
         );
