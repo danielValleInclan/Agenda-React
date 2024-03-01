@@ -28,7 +28,7 @@ export default class AddPerson extends Component {
         const { firstName, lastName, street, postalCode, city, birthday, currentDate } = this.state;
 
         if (isNaN(postalCode)) {
-          alert("The postal code must be a number")
+          alert("El código postal debe ser un número")
           return;
         } else if (postalCode.length <= 0 || postalCode.length > 5) {
           alert("Número de cifras incorrectas en el código postal")
@@ -84,11 +84,11 @@ export default class AddPerson extends Component {
         return (
           <div>
             <h2>Add Person</h2>
-            {showSuccessMessage && <div className="alert alert-success">Person added successfully!</div>} {/* Mostrar el mensaje de éxito si showSuccessMessage es true */}
-            {showErrorMessage && <div className="alert alert-error">Error adding person!!</div>}
+            {showSuccessMessage && <div className="alert alert-success">Persona añadida con exito!</div>} {/* Mostrar el mensaje de éxito si showSuccessMessage es true */}
+            {showErrorMessage && <div className="alert alert-error">Error al añadir a la persona!!</div>}
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
-                <label htmlFor="firstName">First Name</label>
+                <label htmlFor="firstName">Nombre</label>
                 <input
                   type="text"
                   className="form-control"
@@ -100,7 +100,7 @@ export default class AddPerson extends Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="lastName">Last Name</label>
+                <label htmlFor="lastName">Apellido/s</label>
                 <input
                   type="text"
                   className="form-control"
@@ -112,11 +112,11 @@ export default class AddPerson extends Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="street">Street</label>
+                <label htmlFor="street">Calle</label>
                 <input type="text" className="form-control" id="street" name="street" value={street} onChange={this.handleInputChange} />
               </div>
               <div className="form-group">
-                <label htmlFor="postalCode">Postal Code</label>
+                <label htmlFor="postalCode">Código Postal</label>
                 <input
                   type="text"
                   className="form-control"
@@ -125,11 +125,11 @@ export default class AddPerson extends Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="city">City</label>
+                <label htmlFor="city">Ciudad</label>
                 <input type="text" className="form-control" id="city" name="city" value={city} onChange={this.handleInputChange} />
               </div>
               <div className="form-group">
-                <label htmlFor="birthday">Birthday</label>
+                <label htmlFor="birthday">Fecha de Nacimiento</label>
                 <input
                   type="date"
                   className="form-control"
@@ -137,8 +137,9 @@ export default class AddPerson extends Component {
                   name="birthday" value={birthday} onChange={this.handleInputChange}
                 />
               </div>
+              <br/>
               <button type="submit" className="btn btn-primary">
-                Submit
+                Guardar
               </button>
             </form>
           </div>

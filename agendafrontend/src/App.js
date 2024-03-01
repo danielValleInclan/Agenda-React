@@ -32,13 +32,8 @@ class App extends Component{
             </Link>
             <div className="navbar-nav mr-auto">
               <li className="nav-item">
-                <Link to={"/agenda"} className="nav-link">
-                  Agenda
-                </Link>
-              </li>
-              <li className="nav-item">
                 <Link to={"/add"} className="nav-link">
-                  Add
+                  Añadir
                 </Link>
               </li>
             </div>

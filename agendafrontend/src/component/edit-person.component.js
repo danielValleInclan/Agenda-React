@@ -34,7 +34,7 @@ export default class EditPerson extends Component {
         });
       })
       .catch(error => {
-      console.error("Error fetching person:", error);
+      console.error("Error al buscar a la persona:", error);
     });
   }
 
@@ -48,7 +48,7 @@ export default class EditPerson extends Component {
         const { id, firstName, lastName, street, postalCode, city, birthday, currentDate } = this.state;
 
         if (isNaN(postalCode)) {
-          alert("The postal code must be a number")
+          alert("El código postal debe ser un número")
           return;
         } else if (postalCode.length <= 0 || postalCode.length > 5) {
           alert("Número de cifras incorrectas en el código postal")
@@ -91,12 +91,12 @@ export default class EditPerson extends Component {
         const { firstName, lastName, street, postalCode, city, birthday, showSuccessMessage, showErrorMessage } = this.state;
         return (
           <div>
-            <h2>Edit Person</h2>
-            {showSuccessMessage && <div className="alert alert-success">Person added successfully!</div>} {/* Mostrar el mensaje de éxito si showSuccessMessage es true */}
-            {showErrorMessage && <div className="alert alert-error">Error adding person!!</div>}
+            <h2>Editar Persona</h2>
+            {showSuccessMessage && <div className="alert alert-success">Persona actualizada con éxito!</div>} {/* Mostrar el mensaje de éxito si showSuccessMessage es true */}
+            {showErrorMessage && <div className="alert alert-error">Error al actualizar a la persona!!</div>}
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
-                <label htmlFor="firstName">First Name</label>
+                <label htmlFor="firstName">Nombre</label>
                 <input
                   type="text"
                   className="form-control"
@@ -107,9 +107,8 @@ export default class EditPerson extends Component {
                   onChange={this.handleInputChange}
                 />
               </div>
-              {/* Otros campos de formulario similares para los datos de la persona */}
               <div className="form-group">
-                <label htmlFor="lastName">Last Name</label>
+                <label htmlFor="lastName">Apellido/s</label>
                 <input
                   type="text"
                   className="form-control"
@@ -121,11 +120,11 @@ export default class EditPerson extends Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="street">Street</label>
+                <label htmlFor="street">Calle</label>
                 <input type="text" className="form-control" id="street" name="street" value={street} onChange={this.handleInputChange} />
               </div>
               <div className="form-group">
-                <label htmlFor="postalCode">Postal Code</label>
+                <label htmlFor="postalCode">Código postal</label>
                 <input
                   type="text"
                   className="form-control"
@@ -134,11 +133,11 @@ export default class EditPerson extends Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="city">City</label>
+                <label htmlFor="city">Ciudad</label>
                 <input type="text" className="form-control" id="city" name="city" value={city} onChange={this.handleInputChange} />
               </div>
               <div className="form-group">
-                <label htmlFor="birthday">Birthday</label>
+                <label htmlFor="birthday">Fecha de Nacimiento</label>
                 <input
                   type="date"
                   className="form-control"
@@ -146,8 +145,9 @@ export default class EditPerson extends Component {
                   name="birthday" value={birthday} onChange={this.handleInputChange}
                 />
               </div>
+              <br/>
               <button type="submit" className="btn btn-primary">
-                Submit
+                Guardar
               </button>
             </form>
           </div>

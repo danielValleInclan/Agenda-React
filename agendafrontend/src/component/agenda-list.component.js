@@ -134,7 +134,7 @@ export default class AgendaList extends Component {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Search by name"
+                  placeholder="Buscar por nombre"
                   value={searchName}
                   onChange={this.onChangeSearchName}
                 />
@@ -144,13 +144,13 @@ export default class AgendaList extends Component {
                     type="button"
                     onClick={this.searchName}
                   >
-                    Search
+                    Buscar
                   </button>
                 </div>
               </div>
             </div>
             <div className="col-md-6">
-              <h4>Persons List</h4>
+              <h4>Listado de Personas</h4>
     
               <ul className="list-group">
                 {/*El operedor && lógico. Los dos elementos tienen que ser true, en este caso no vacio, para que se ejecute la sentencia */}
@@ -176,14 +176,14 @@ export default class AgendaList extends Component {
                 className="m-3 btn btn-sm btn-danger"
                 onClick={this.removeAllPersons}
               >
-                Remove All
+                Eliminar todas
               </button>
 
               <button
               className="m-3 btn btn-sm btn-danger"
               onClick={() => this.removePerson()}
               >
-                Remove Selected
+                Eliminar persona seleccinada
               </button>
               <div className="progress mt-3">
                   <div
@@ -203,35 +203,35 @@ export default class AgendaList extends Component {
               {/*se dibuja "Please click on a Tutorial..." ver más abajo.*/}
               {currentPerson ? (
                 <div>
-                  <h4>Person</h4>
+                  <h4>Persona</h4>
                   <div>
                     <label>
-                      <strong>Name:</strong>
+                      <strong>Nombre:</strong>
                     </label>{" "}
                     {currentPerson.firstName}
                     <br/>
                     <label>
-                      <strong>LastName:</strong>
+                      <strong>Apellido:</strong>
                     </label>{" "}
                     {currentPerson.lastName}
                     <br/>
                     <label>
-                      <strong>Street:</strong>
+                      <strong>Calle:</strong>
                     </label>{" "}
                     {currentPerson.street}
                     <br/>
                     <label>
-                      <strong>PostalCode:</strong>
+                      <strong>Código Postal:</strong>
                     </label>{" "}
                     {currentPerson.postalCode}
                     <br/>
                     <label>
-                      <strong>City:</strong>
+                      <strong>Ciudad:</strong>
                     </label>{" "}
                     {currentPerson.city}
                     <br/>
                     <label>
-                      <strong>Birthday:</strong>
+                      <strong>Fecha de Nacimiento:</strong>
                     </label>{" "}
                     {currentPerson.birthday}
                   </div>
@@ -240,14 +240,14 @@ export default class AgendaList extends Component {
                       to={"/edit-person/" + (currentPerson ? currentPerson.id : '')}
                       className="btn btn-sm btn-custom"
                     >
-                      Edit Person
+                      Editar
                     </Link>
                     )}
                   </div>
               ) : (
                 <div>
                   <br />
-                  <p>Please click on a Person...</p>
+                  <p>Porfavor selecciona una persona...</p>
                 </div>
               )}
             </div>
