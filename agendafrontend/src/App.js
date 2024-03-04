@@ -11,7 +11,8 @@ class App extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      currentPerson: null
+      currentPerson: null,
+      currentUser: null
     };
     this.setCurrentPerson = this.setCurrentPerson.bind(this);
   }
@@ -23,6 +24,7 @@ class App extends Component{
   }
 
   render() {
+    const { currentUser } = this.state;
     return (
       <Router>
         <div>
@@ -36,6 +38,20 @@ class App extends Component{
                   Añadir
                 </Link>
               </li>
+              {currentUser ? (
+                <li className="nav-item">
+                  <span className="nav-link" onClick={() => this.handleSignOut()}>Cerrar sesión</span>
+                </li>
+              ) : (
+                <>
+                  <li className="nav-item">
+                    <Link to={"/signin"} className="nav-link">Iniciar sesión</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link to={"/signup"} className="nav-link">Registrarse</Link>
+                  </li>
+                </>
+              )}
             </div>
           </nav>
           <div className="container mt-3">
