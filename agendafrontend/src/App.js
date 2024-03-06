@@ -5,6 +5,9 @@ import AgendaList from './component/agenda-list.component';
 import AddPerson from "./component/add-person.component"; // Importa el componente AddPerson
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import EditPerson from "./component/edit-person.component";
+import SignIn from "./component/SignIn";
+import { signInWithGoogle, auth } from "./firebase";
+
 
 
 class App extends Component{
@@ -39,9 +42,14 @@ class App extends Component{
                 </Link>
               </li>
               {currentUser ? (
-                <li className="nav-item">
-                  <span className="nav-link" onClick={() => this.handleSignOut()}>Cerrar sesión</span>
-                </li>
+                <>
+                  <li className="nav-item">
+                    <img src={currentUser.photoURL} alt="Profile" style={{ width: "50px", borderRadius: "50%" }} />
+                  </li> 
+                  <li className="nav-item">
+                    <span className="nav-link" onClick={() => this.handleSignOut()}>Cerrar sesión</span>
+                  </li>
+                </>
               ) : (
                 <>
                   <li className="nav-item">
@@ -60,6 +68,7 @@ class App extends Component{
               <Route exact path={["/", "/agenda"]} render={() => <AgendaList currentPerson={this.state.currentPerson} setCurrentPerson={this.setCurrentPerson} />} />
               <Route exact path="/add" component={AddPerson} />
               <Route exact path="/edit-person/:id" component={EditPerson} />
+              <Route exact path="/signin" component={SignIn} />
             {/*  <Route path="/tutorials/:id" component={Tutorial} /> */}
             </Switch>
           </div>
