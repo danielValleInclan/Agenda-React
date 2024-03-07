@@ -68,11 +68,11 @@ class App extends Component{
               {currentUser ? (
                 <>
                   <li className="nav-item">
-                    <img src={currentUser.photoURL} alt="Profile" style={{ width: "50px", borderRadius: "50%" }} />
-                  </li> 
-                  <li className="nav-item">
                     <span className="nav-link" onClick={() => this.handleSignOut()}>Cerrar sesión</span>
                   </li>
+                  <li className="nav-item">
+                    <img src={currentUser.photoURL} alt="Profile" style={{ width: "50px", height: "auto" }} />
+                  </li> 
                 </>
               ) : (
                 <>
