@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import EditPerson from "./component/edit-person.component";
 import SignIn from "./component/SignIn";
 import { signInWithGoogle, auth } from "./firebase";
+import UserProvider, { UserContext } from './provider/UserProvider'; // Importa el UserProvider y el contexto UserContext
+
 
 
 
@@ -51,6 +53,7 @@ class App extends Component{
   render() {
     const { currentUser } = this.state;
     return (
+      <UserProvider>
       <Router>
         <div>
           <nav className='navbar navbar-expand navbar-dark bg-dark'>
@@ -65,39 +68,48 @@ class App extends Component{
               </li>
             </ul>
             <div className="navbar-nav ml-auto">
-              {currentUser ? (
-                <>
-                  <li className="nav-item">
-                    <span className="nav-link" onClick={() => this.handleSignOut()}>Cerrar sesión</span>
-                  </li>
-                  <li className="nav-item">
-                    <img src={currentUser.photoURL} alt="Profile" style={{ width: "50px", height: "auto" }} />
-                  </li> 
-                </>
-              ) : (
-                <>
-                  <li className="nav-item">
-                    <Link to={"/signin"} className="nav-link">Iniciar sesión</Link>
-                  </li>
-                  <li className="nav-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png" style={{ width: "50px", height: "auto" }} />
-                  </li>
-                </>
+            <UserContext.Consumer>
+              {currentUser => ( // Asegúrate de recibir currentUser como argumento de la función
+                currentUser ? (
+                  <>
+                    <li className="nav-item">
+                      <span className="nav-link" onClick={() => this.handleSignOut()}>Cerrar sesión</span>
+                    </li>
+                    <li className="nav-item">
+                      <img src={currentUser.photoURL} alt="Profile" style={{ width: "50px", height: "auto" }} />
+                    </li> 
+                  </>
+                ) : (
+                  <>
+                    <li className="nav-item">
+                      <Link to={"/signin"} className="nav-link">Iniciar sesión</Link>
+                    </li>
+                    <li className="nav-item">
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png" style={{ width: "50px", height: "auto" }} />
+                    </li>
+                  </>
+                )
               )}
+              </UserContext.Consumer>
             </div>
           </nav>
           <div className="container mt-3">
             <Switch>
             {/*El en switch se renderizarán todas los compoentes cuta URL coicidan con la activa*/}
               <Route exact path={["/", "/agenda"]} render={() => <AgendaList currentPerson={this.state.currentPerson} setCurrentPerson={this.setCurrentPerson} />} />
-              <Route exact path="/add" component={AddPerson} />
-              <Route exact path="/edit-person/:id" component={EditPerson} />
+              <Route exact path="/add" >
+                {currentUser ? <AddPerson/> : <SignIn/>}
+              </Route>
+              <Route exact path="/edit-person/:id" >
+                {currentUser ? <EditPerson/> : <SignIn/>}
+              </Route>
               <Route exact path="/signin" component={SignIn} />
             {/*  <Route path="/tutorials/:id" component={Tutorial} /> */}
             </Switch>
           </div>
         </div>
       </Router>
+      </UserProvider>
     )
   }
 }
