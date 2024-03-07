@@ -26,6 +26,28 @@ class App extends Component{
     });
   }
 
+  handleSignOut() {
+    auth.signOut().then(() => {
+      this.setState({ currentUser: null });
+    }).catch(error => {
+      console.error("Error signing out:", error);
+    });
+  }
+
+  componentDidMount() {
+    // Suscribirse a cambios en la autenticación de Firebase
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        // Usuario autenticado
+        this.setState({ currentUser: user });
+      } else {
+        // No hay usuario autenticado
+        this.setState({ currentUser: null });
+      }
+    });
+  }
+
+
   render() {
     const { currentUser } = this.state;
     return (
@@ -35,12 +57,14 @@ class App extends Component{
             <Link to={"/agenda"} className="navbar-brand">
               Agenda
             </Link>
-            <div className="navbar-nav mr-auto">
+            <ul className="navbar-nav mr-auto"> {/* Cambiado de div a ul */}
               <li className="nav-item">
                 <Link to={"/add"} className="nav-link">
                   Añadir
                 </Link>
               </li>
+            </ul>
+            <div className="navbar-nav ml-auto">
               {currentUser ? (
                 <>
                   <li className="nav-item">
@@ -56,7 +80,7 @@ class App extends Component{
                     <Link to={"/signin"} className="nav-link">Iniciar sesión</Link>
                   </li>
                   <li className="nav-item">
-                    <Link to={"/signup"} className="nav-link">Registrarse</Link>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png" style={{ width: "50px", height: "auto" }} />
                   </li>
                 </>
               )}
